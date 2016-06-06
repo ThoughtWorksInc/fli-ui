@@ -6,6 +6,16 @@ module.exports = {
   plugins: [
     'html'
   ],
+  globals: {
+    describe: false,
+    xdescribe: false,
+    fdescribe: false,
+    it: false,
+    xit: false,
+    fit: false,
+    expect: false,
+    Event: false
+  },
   // add your custom rules here
   'rules': {
     // allow paren-less arrow functions

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+TEST_TYPE='unit'
+[ -n "$1" ] && TEST_TYPE="$1"
+
+NODE_ENV='development'
+[ -n "$2" ] && NODE_ENV="$2"
+
+KARMA_CONFIG='karma.'$TEST_TYPE'.conf.js'
+
+cross-env NODE_ENV=$NODE_ENV karma start build/$KARMA_CONFIG --single-run --test-type $TEST_TYPE
