@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './App'
+import Dashboard from './Dashboard'
 import vueResource from 'vue-resource'
 
 Vue.use(vueResource)
@@ -7,5 +7,5 @@ Vue.use(vueResource)
 /* eslint-disable no-new */
 new Vue({
   el: 'body',
-  components: { App }
+  components: { Dashboard }
 })
