@@ -14,6 +14,7 @@ module.exports = {
     xit: false,
     fit: false,
     expect: false,
+    spyOn: false,
     Event: false
   },
   // add your custom rules here
