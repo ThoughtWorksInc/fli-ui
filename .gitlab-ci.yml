@@ -1,0 +1,10 @@
+before_script:
+  - bundle install
+
+stages:
+  - test
+
+unit_test:
+  stage: test
+  script:
+    - npm test unit
