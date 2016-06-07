@@ -1,6 +1,7 @@
 var path = require('path')
 var webpackConf = require('./webpack.base.conf')
 webpackConf.resolve.alias = {
+  'config': path.resolve(__dirname, '../config', process.env.NODE_ENV),
   'src': path.resolve(__dirname, '../src'),
   'test': path.resolve(__dirname, '../test')
 }
