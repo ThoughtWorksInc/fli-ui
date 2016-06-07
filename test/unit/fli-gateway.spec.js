@@ -9,6 +9,8 @@ describe('fli gateway', () => {
   it('calls events endpoint', (done) => {
     Vue.http = () => Promise.resolve({'data': {event: 'some garbage'}})
     spyOn(Vue, 'http').and.callThrough()
+    var baseTime = new Date(2016, 1, 23)
+    window.jasmine.clock().mockDate(baseTime)
 
     FliGateway.createEvent('blah', 'blahStory').then(() => {
       expect(Vue.http).toHaveBeenCalledWith(
@@ -17,7 +19,7 @@ describe('fli gateway', () => {
           method: 'POST',
           data: {
             'event_type': 'blah',
-            'occurred_at': 'some time',
+            'occurred_at': baseTime.toISOString(),
             'story': 'blahStory'
           }
         }

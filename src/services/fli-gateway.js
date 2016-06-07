@@ -7,7 +7,7 @@ export function createEvent (eventType, storyNumber) {
     method: 'POST',
     data: {
       'event_type': eventType,
-      'occurred_at': 'some time',
+      'occurred_at': new Date().toISOString(),
       'story': storyNumber
     }
   })
