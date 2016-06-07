@@ -27,7 +27,7 @@ export default class TestHarness {
     return new Promise((resolve, reject) => {
       this.chain(() => {
         this.root.remove()
-        this.app.router.stop()
+        this.app.router && this.app.router.stop()
         resolve()
       })
     })
@@ -49,6 +49,7 @@ export default class TestHarness {
 
   visit (path) {
     return this.chain(() => {
+      if (!this.app.router) { return }
       const currentPath = this.app.router.app.$route.path
       if (path !== currentPath) {
         this.app.router.go(path)

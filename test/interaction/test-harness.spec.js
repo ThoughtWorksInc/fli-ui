@@ -185,4 +185,30 @@ describe('TestHarness', () => {
       })
     }).then(done)
   })
+
+  it('does not require vue-router', (done) => {
+    class MagicApp {
+      constructor (root) { this.root = root }
+
+      start () {
+        const App = Vue.extend({
+          template: '<div class="magic">Hello!</div>'
+        })
+        return new Promise((resolve, reject) => {
+          this.app = new App({el: this.root})
+          Vue.nextTick(resolve)
+        })
+      }
+    }
+    const harness = new TestHarness(MagicApp)
+    harness.run(runner => {
+      runner.visit('/')
+      runner.chain(() => {
+        console.log('visited')
+      })
+      runner.verify($ => {
+        expect($('.magic').text()).toContain('Hello!')
+      })
+    }).then(done)
+  })
 })
