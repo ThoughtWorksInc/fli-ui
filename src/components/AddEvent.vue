@@ -11,12 +11,17 @@
       </fieldset>
     </form>
   </div>
-  <div class="newly-added-event-text">Event added!</div>
+  <div class="newly-added-event-text" v-if="eventAdded">Event added with id: {{ eventId }}</div>
 </template>
 <script>
 import * as FliGateway from 'src/services/fli-gateway'
 
 export default {
+  props: {
+    eventAdded: false,
+    eventId: ''
+  },
+
   data () {
     return {
       eventType: '',
@@ -29,6 +34,8 @@ export default {
     addEvent () {
       FliGateway.createEvent(this.eventType, this.storyNumber).then(response => {
         console.log(response.data.event)
+        this.eventId = response.data.event.id
+        this.eventAdded = true
       })
     }
   }
