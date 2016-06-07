@@ -15,7 +15,7 @@ describe('fli gateway', () => {
         {
           url: 'http://localhost:4567/api/events',
           method: 'POST',
-          body: {
+          data: {
             'event_type': 'blah',
             'occurred_at': 'some time',
             'story': 'blahStory'

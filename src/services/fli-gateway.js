@@ -5,7 +5,7 @@ export function createEvent (eventType, storyNumber) {
   return ajax({
     url: config['fliAPI'] + 'api/events',
     method: 'POST',
-    body: {
+    data: {
       'event_type': eventType,
       'occurred_at': 'some time',
       'story': storyNumber
