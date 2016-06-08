@@ -12,10 +12,10 @@ describe('fli gateway', () => {
   it('creates a new event', (done) => {
     var eventType = 'blah event'
     var storyNumber = 'blah story'
-    FliGateway.createEvent(eventType, storyNumber).then(response => {
-      expect(response.data.event).toBeTruthy()
-      expect(response.data.event.event_type).toBe(eventType)
-      expect(response.data.event.story_id).toBeTruthy()
+    FliGateway.createEvent(eventType, storyNumber).then(event => {
+      expect(event).toBeTruthy()
+      expect(event.event_type).toBe(eventType)
+      expect(event.story_id).toBeTruthy()
     }).catch(failTest).then(done)
   })
 

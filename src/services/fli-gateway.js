@@ -10,7 +10,7 @@ export function createEvent (eventType, storyNumber) {
       'occurred_at': new Date().toISOString(),
       'story': storyNumber
     }
-  })
+  }).then(response => response.data.event)
 }
 
 export function fetchGroups () {

@@ -32,9 +32,9 @@ export default {
 
   methods: {
     addEvent () {
-      FliGateway.createEvent(this.eventType, this.storyNumber).then(response => {
-        console.log(response.data.event)
-        this.eventId = response.data.event.id
+      FliGateway.createEvent(this.eventType, this.storyNumber).then(event => {
+        console.log(event)
+        this.eventId = event.id
         this.eventAdded = true
       })
     }
