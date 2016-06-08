@@ -17,7 +17,7 @@ export function fetchGroups () {
   return ajax({
     url: config['fliAPI'] + 'api/groups',
     method: 'GET'
-  })
+  }).then(response => response.data.groups)
 }
 
 function ajax (options) {
