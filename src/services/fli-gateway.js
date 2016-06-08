@@ -13,6 +13,13 @@ export function createEvent (eventType, storyNumber) {
   })
 }
 
+export function fetchGroups () {
+  return ajax({
+    url: config['fliAPI'] + 'api/groups',
+    method: 'GET'
+  })
+}
+
 function ajax (options) {
   return new Promise((resolve, reject) => Vue.http(options).then(resolve).catch(reject))
 }

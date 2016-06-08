@@ -26,4 +26,18 @@ describe('fli gateway', () => {
       )
     }).catch(failTest).then(done)
   })
+
+  it('calls groups endpoint', (done) => {
+    Vue.http = () => Promise.resolve({'data': {'groups': [{'description': 'blah desc'}]}})
+    spyOn(Vue, 'http').and.callThrough()
+
+    FliGateway.fetchGroups().then(() => {
+      expect(Vue.http).toHaveBeenCalledWith(
+        {
+          url: 'http://localhost:4567/api/groups',
+          method: 'GET'
+        }
+      )
+    }).catch(failTest).then(done)
+  })
 })
