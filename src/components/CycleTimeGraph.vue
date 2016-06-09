@@ -11,7 +11,7 @@ import * as AggregateCycleTime from 'src/AggregateCycleTime'
 export default {
   ready () {
     GoogleGateway.setCallback(AggregateCycleTime.drawCycleTime)
-    FliGateway.fetchGroups().then(groups => {
+    FliGateway.fetchGroupsWithCondition('all').then(groups => {
       for (const group of groups) {
         AggregateCycleTime.addDataSeries(
           group.description,
