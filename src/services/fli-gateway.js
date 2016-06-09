@@ -13,13 +13,6 @@ export function createEvent (eventType, storyNumber) {
   }).then(response => response.data.event)
 }
 
-export function fetchGroups () {
-  return ajax({
-    url: config['fliAPI'] + 'api/groups',
-    method: 'GET'
-  }).then(response => response.data.groups)
-}
-
 export function fetchGroupsWithCondition (condition) {
   const encodedQuery = encodeURI(condition)
   return ajax({
