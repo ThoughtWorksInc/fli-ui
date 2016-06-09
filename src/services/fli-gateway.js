@@ -21,8 +21,9 @@ export function fetchGroups () {
 }
 
 export function fetchGroupsWithCondition (condition) {
+  const encodedQuery = encodeURI(condition)
   return ajax({
-    url: config['fliAPI'] + 'api/groups?conditions=' + condition,
+    url: config['fliAPI'] + 'api/groups?conditions=' + encodedQuery,
     method: 'GET'
   }).then(response => response.data.groups)
 }
