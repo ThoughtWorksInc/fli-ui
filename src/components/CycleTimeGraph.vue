@@ -12,7 +12,7 @@ export default {
     FliGateway.fetchGroups().then(groups => {
       console.log(groups)
     })
-    window.google.charts.setOnLoadCallback(AggregateCycleTime.drawCycleTime())
+    window.google.charts.setOnLoadCallback(AggregateCycleTime.drawCycleTime)
   }
 }
 </script>
