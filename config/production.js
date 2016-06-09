@@ -4,5 +4,5 @@
   @usage: import config as 'config'
 */
 module.exports = {
-  'fliAPI': 'http://fli-change.herokuapp.com/'
+  'fliAPI': 'https://fli-change.herokuapp.com/'
 }
