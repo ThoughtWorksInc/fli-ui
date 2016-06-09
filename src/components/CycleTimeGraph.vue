@@ -10,7 +10,6 @@ import * as AggregateCycleTime from 'src/AggregateCycleTime'
 
 export default {
   ready () {
-    // window.google.charts.setOnLoadCallback(AggregateCycleTime.drawCycleTime)
     GoogleGateway.setCallback(AggregateCycleTime.drawCycleTime)
     FliGateway.fetchGroups().then(groups => {
       for (const group of groups) {
