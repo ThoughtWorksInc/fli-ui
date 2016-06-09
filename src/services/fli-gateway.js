@@ -20,6 +20,13 @@ export function fetchGroups () {
   }).then(response => response.data.groups)
 }
 
+export function fetchGroupsWithCondition (condition) {
+  return ajax({
+    url: config['fliAPI'] + 'api/groups?conditions=' + condition,
+    method: 'GET'
+  }).then(response => response.data.groups)
+}
+
 function ajax (options) {
   return new Promise((resolve, reject) => Vue.http(options).then(resolve).catch(reject))
 }

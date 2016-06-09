@@ -24,4 +24,10 @@ describe('fli gateway', () => {
       expect(groups.length).toBe(1)
     }).catch(failTest).then(done)
   })
+
+  it('gets cycle time data for stories segmented by conditions', (done) => {
+    FliGateway.fetchGroupsWithCondition('all').then(groups => {
+      expect(groups.length).toBe(1)
+    }).catch(failTest).then(done)
+  })
 })

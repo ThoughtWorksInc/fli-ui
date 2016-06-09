@@ -40,4 +40,18 @@ describe('fli gateway', () => {
       )
     }).catch(failTest).then(done)
   })
+
+  it('gets groups by condition', (done) => {
+    Vue.http = () => Promise.resolve({'data': {'groups': [{'description': 'blah desc'}]}})
+    spyOn(Vue, 'http').and.callThrough()
+
+    FliGateway.fetchGroupsWithCondition('with kickoff').then(() => {
+      expect(Vue.http).toHaveBeenCalledWith(
+        {
+          url: 'http://localhost:4567/api/groups?conditions=with kickoff',
+          method: 'GET'
+        }
+      )
+    }).catch(failTest).then(done)
+  })
 })
