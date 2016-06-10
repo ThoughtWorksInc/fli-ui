@@ -22,6 +22,12 @@ export function fetchGroups () {
   })
 }
 
+export function fetchStories () {
+  return new Promise((resolve, reject) => {
+    resolve()
+  })
+}
+
 export function setCallback (callbackFunction) {
   return new Promise((resolve, reject) => {
     resolve()
