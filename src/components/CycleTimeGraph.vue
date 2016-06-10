@@ -13,7 +13,7 @@
 <script>
 import * as FliGateway from 'src/services/fli-gateway'
 import * as GoogleGateway from 'src/services/google-gateway'
-import * as AggregateCycleTime from 'src/AggregateCycleTime'
+import * as AggregateCycleTime from 'src/services/aggregate-cycle-time'
 
 export default {
   data () {
