@@ -10,19 +10,26 @@ import * as AggregateCycleTime from 'src/AggregateCycleTime'
 
 export default {
   ready () {
-    GoogleGateway.setCallback(AggregateCycleTime.drawCycleTime)
-    FliGateway.fetchGroupsWithCondition('all').then(groups => {
-      for (const group of groups) {
-        AggregateCycleTime.addDataSeries(
-          group.description,
-          group.sampleSize,
-          group.cycleTimeStatistics.mean,
-          group.cycleTimeStatistics.lowerBound,
-          group.cycleTimeStatistics.standardDeviation,
-          group.cycleTimeStatistics.upperBound
-        )
-      }
-    })
+    GoogleGateway.setCallback(this.drawChart)
+  },
+
+  methods: {
+    drawChart () {
+      FliGateway.fetchGroupsWithCondition('all').then(groups => {
+        for (const group of groups) {
+          AggregateCycleTime.addDataSeries(
+            group.description,
+            group.sampleSize,
+            group.cycleTimeStatistics.mean,
+            group.cycleTimeStatistics.lowerBound,
+            group.cycleTimeStatistics.standardDeviation,
+            group.cycleTimeStatistics.upperBound
+          )
+        }
+      }).then(() => {
+        AggregateCycleTime.drawCycleTime()
+      })
+    }
   }
 }
 </script>
