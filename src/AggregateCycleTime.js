@@ -1,5 +1,9 @@
 
-const dataSeries = []
+let dataSeries = []
+
+export function clearDataSeries () {
+  dataSeries = []
+}
 
 export function drawCycleTime () {
   var data = defineDataTableColumns()

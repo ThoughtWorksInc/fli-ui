@@ -30,7 +30,7 @@ export default {
   methods: {
     updateConditions () {
       this.condition = this.inputConditions
-      // clear chart
+      AggregateCycleTime.clearDataSeries()
       this.drawChart()
     },
 
