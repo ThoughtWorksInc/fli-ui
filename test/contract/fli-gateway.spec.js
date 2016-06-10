@@ -24,4 +24,11 @@ describe('fli gateway', () => {
       expect(groups.length).toBe(1)
     }).catch(failTest).then(done)
   })
+
+  it('gets all stories', (done) => {
+    FliGateway.fetchStories().then(stories => {
+      expect(stories).toBeTruthy()
+      expect(stories.length).toBeGreaterThan(1)
+    }).catch(failTest).then(done)
+  })
 })

@@ -40,4 +40,18 @@ describe('fli gateway', () => {
       )
     }).catch(failTest).then(done)
   })
+
+  it('gets all stories', (done) => {
+    Vue.http = () => Promise.resolve({'data': {'stories': [{'name': 'blah name'}]}})
+    spyOn(Vue, 'http').and.callThrough()
+
+    FliGateway.fetchStories().then(() => {
+      expect(Vue.http).toHaveBeenCalledWith(
+        {
+          url: 'http://localhost:4567/api/stories',
+          method: 'GET'
+        }
+      )
+    }).catch(failTest).then(done)
+  })
 })
