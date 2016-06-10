@@ -9,13 +9,19 @@ import * as GoogleGateway from 'src/services/google-gateway'
 import * as AggregateCycleTime from 'src/AggregateCycleTime'
 
 export default {
+  data () {
+    return {
+      condition: 'all'
+    }
+  },
+
   ready () {
     GoogleGateway.setCallback(this.drawChart)
   },
 
   methods: {
     drawChart () {
-      FliGateway.fetchGroupsWithCondition('all').then(groups => {
+      FliGateway.fetchGroupsWithCondition(this.condition).then(groups => {
         for (const group of groups) {
           AggregateCycleTime.addDataSeries(
             group.description,
