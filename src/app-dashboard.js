@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
-import Dashboard from 'src/Dashboard'
+import { createRouter } from './router'
+
 Vue.use(VueResource)
 
 export default class AppDashboard {
@@ -9,10 +10,11 @@ export default class AppDashboard {
   }
 
   start () {
-    const App = Vue.component('dashboard', Dashboard)
+    var router = createRouter()
+    this.router = router
+    this.root.appendChild(document.createElement('router-view'))
     return new Promise((resolve, reject) => {
-      this.app = new App({el: this.root})
-      Vue.nextTick(resolve)
+      router.start({}, this.root, resolve)
     })
   }
 

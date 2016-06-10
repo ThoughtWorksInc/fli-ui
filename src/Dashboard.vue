@@ -1,16 +1,18 @@
 <template>
-  <div id="app">
-    <h1>Dashboard</h1>
-    <add-event></add-event>
+  <main>
     <div>
-      <div class="cycle-time-graph">
-        <cycle-time-graph></cycle-time-graph>
-      </div>
-      <div class="stories-list">
-        <stories-list></stories-list>
+      <h1>Dashboard</h1>
+      <add-event></add-event>
+      <div>
+        <div class="cycle-time-graph">
+          <cycle-time-graph></cycle-time-graph>
+        </div>
+        <div class="stories-list">
+          <stories-list></stories-list>
+        </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 <script>
 import AddEvent from './components/AddEvent'
