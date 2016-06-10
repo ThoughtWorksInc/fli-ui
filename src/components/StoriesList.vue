@@ -3,7 +3,7 @@
   <div>
     <ul v-for="story in stories">
       <li>
-        <button v-on:click="goToOdyssey" class="story-button">{{ story.name }}</button>
+        <button v-on:click="goToOdyssey(story.name)" class="story-button">{{ story.name }}</button>
       </li>
     </ul>
   </div>
@@ -11,11 +11,18 @@
 
 <script>
 import * as FliGateway from 'src/services/fli-gateway'
+import { setActiveStory } from 'src/vuex/actions'
 
 export default {
   data () {
     return {
       stories: []
+    }
+  },
+
+  vuex: {
+    actions: {
+      setActiveStory
     }
   },
 
@@ -26,7 +33,8 @@ export default {
   },
 
   methods: {
-    goToOdyssey () {
+    goToOdyssey (storyName) {
+      this.setActiveStory(storyName)
       this.$router.go('story-odyssey')
     }
   }
