@@ -27,7 +27,7 @@ export function addDataSeries (desc, sampleSize, mean, lowerBound, standardDevia
 function defineChartFormat () {
   return {
     backgroundColor: 'white',
-    width: 900,
+    display: 'inline-block',
     height: 600,
     bar: {groupWidth: '33%'},
     colors: ['transparent', 'green', 'maroon', 'black'],
