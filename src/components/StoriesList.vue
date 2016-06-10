@@ -3,7 +3,7 @@
   <div>
     <ul v-for="story in stories">
       <li>
-        <button v-on:click="goToOdyssey">{{ story.name }}</button>
+        <button v-on:click="goToOdyssey" class="story-button">{{ story.name }}</button>
       </li>
     </ul>
   </div>

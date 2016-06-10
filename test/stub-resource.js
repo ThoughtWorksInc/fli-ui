@@ -24,7 +24,7 @@ export function fetchGroups () {
 
 export function fetchStories () {
   return new Promise((resolve, reject) => {
-    resolve()
+    resolve({ response: { data: { 'stories': { 'name': 'blah' } } } })
   })
 }
 

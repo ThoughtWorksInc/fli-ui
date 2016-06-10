@@ -1,5 +1,5 @@
 <template>
-  <h2> Story Odyssey </h2>
+  <h2 class="story-odyssey-title"> Story Odyssey </h2>
 </template>
 
 <script>
