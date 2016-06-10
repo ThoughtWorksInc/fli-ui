@@ -2,7 +2,9 @@
   <h2>Story List</h2>
   <div>
     <ul v-for="story in stories">
-      <li>{{ story.name }}</li>
+      <li>
+        <button v-on:click="goToOdyssey">{{ story.name }}</button>
+      </li>
     </ul>
   </div>
 </template>
@@ -21,6 +23,12 @@ export default {
     FliGateway.fetchStories().then(stories => {
       this.stories = stories
     })
+  },
+
+  methods: {
+    goToOdyssey () {
+      this.$router.go('story-odyssey')
+    }
   }
 }
 </script>
