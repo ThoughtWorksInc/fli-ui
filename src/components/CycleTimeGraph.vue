@@ -30,11 +30,11 @@ export default {
   methods: {
     updateConditions () {
       this.condition = this.inputConditions
-      AggregateCycleTime.clearDataSeries()
       this.drawChart()
     },
 
     drawChart () {
+      AggregateCycleTime.clearDataSeries()
       FliGateway.fetchGroupsWithCondition(this.condition).then(groups => {
         for (const group of groups) {
           AggregateCycleTime.addDataSeries(
