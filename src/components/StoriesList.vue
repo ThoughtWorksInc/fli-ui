@@ -1,12 +1,12 @@
 <template>
   <h2>Story List</h2>
   <div>
-    <ul v-for="story in stories">
-      <li>
-        <button v-on:click="goToOdyssey(story.name)" class="story-button">{{ story.name }}</button>
-        <label>{{story.daysInProgress}}</label>
-      </li>
-    </ul>
+    <table style="width:100%" v-for="story in stories">
+      <tr>
+        <td><button v-on:click="goToOdyssey(story.name)" class="story-button">{{ story.name }}</button></td>
+        <td>{{story.daysInProgress}}</td>
+      </tr>
+    </table>
   </div>
 </template>
 
