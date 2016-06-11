@@ -42,7 +42,7 @@ describe('fli gateway', () => {
   })
 
   it('gets all stories', (done) => {
-    Vue.http = () => Promise.resolve({'data': {'stories': [{'name': 'blah name'}]}})
+    Vue.http = () => Promise.resolve({'data': {'stories': [{'name': 'blah name', 'daysInProgress': 7}]}})
     spyOn(Vue, 'http').and.callThrough()
 
     FliGateway.fetchStories().then(() => {
