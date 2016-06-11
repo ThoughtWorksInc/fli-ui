@@ -29,6 +29,8 @@ describe('fli gateway', () => {
     FliGateway.fetchStories().then(stories => {
       expect(stories).toBeTruthy()
       expect(stories.length).toBeGreaterThan(1)
+      expect(stories[0].name).toBe('1234')
+      expect(stories[0].days_in_progress).toBe(3)
     }).catch(failTest).then(done)
   })
 })
