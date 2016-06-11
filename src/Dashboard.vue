@@ -1,7 +1,6 @@
 <template>
   <main>
     <div>
-      <h1>Dashboard</h1>
       <add-event></add-event>
       <div>
         <div class="cycle-time-graph">
