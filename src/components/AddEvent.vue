@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h4>Add Event</h4>
     <form>
       <fieldset>
         <label for="event_type">Event Type</label>
