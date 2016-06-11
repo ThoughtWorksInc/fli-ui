@@ -1,5 +1,5 @@
 <template>
-  <h2>Story List</h2>
+  <h2>All Stories</h2>
   <div>
     <table style="width:100%" v-for="story in stories">
       <tr>
