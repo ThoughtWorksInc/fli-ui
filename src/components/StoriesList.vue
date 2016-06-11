@@ -4,7 +4,7 @@
     <ul v-for="story in stories">
       <li>
         <button v-on:click="goToOdyssey(story.name)" class="story-button">{{ story.name }}</button>
-        <label>{{story.days_in_progress}}</label>
+        <label>{{story.daysInProgress}}</label>
       </li>
     </ul>
   </div>
