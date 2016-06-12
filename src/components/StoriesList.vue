@@ -1,11 +1,19 @@
 <template>
   <h2>All Stories</h2>
   <div>
-    <table style="width:100%" v-for="story in stories">
-      <tr>
-        <td><button v-on:click="goToOdyssey(story.name)" class="story-button">{{ story.name }}</button></td>
-        <td>{{story.daysInProgress}}</td>
-      </tr>
+    <table style="width:100%">
+      <thead>
+        <tr>
+          <td>Story</td>
+          <td>Days in Progress</td>
+        </tr>
+      </thead>
+      <tbody v-for="story in stories">
+        <tr>
+          <td><button v-on:click="goToOdyssey(story.name)" class="story-button">{{ story.name }}</button></td>
+          <td>{{story.daysInProgress}}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>
