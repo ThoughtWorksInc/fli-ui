@@ -31,9 +31,9 @@ export function fetchStories () {
 export function fetchStory (storyName) {
   const encodedStoryName = encodeURI(storyName)
   return ajax({
-    url: config['fliAPI'] + 'api/story/' + encodedStoryName,
+    url: config['fliAPI'] + 'api/stories/' + encodedStoryName,
     method: 'GET'
-  })
+  }).then(response => response.data.story)
 }
 
 function ajax (options) {
