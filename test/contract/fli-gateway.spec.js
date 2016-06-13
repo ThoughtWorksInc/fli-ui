@@ -39,7 +39,6 @@ describe('fli gateway', () => {
     FliGateway.fetchStory('1234').then(story => {
       expect(story).toBeTruthy()
       expect(story.name).toBe('1234')
-      expect(story.ended).toBeDefined()
       expect(story.cycleTime).toBeDefined()
       expect(story.status).toBeDefined()
     }).catch(failTest).then(done)
