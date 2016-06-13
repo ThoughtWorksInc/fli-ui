@@ -13,7 +13,7 @@ describe('story journey', () => {
       runner.visit('/story-journey')
       runner.verify($ => {
         expect($('.story-journey-title').text()).toContain('Story Journey')
-        expect($('.story-days-in-progress').text()).toContain('This story has been finished in 45 days')
+        expect($('.story-days-in-progress').text()).toContain('This story completed in 45 days')
       })
     }).then(done)
   })
