@@ -7,7 +7,7 @@ describe('story journey', () => {
   afterEach(() => FliGateway.clearStubResponses())
 
   it('displays completed text if story has ended', (done) => {
-    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'ended': true, 'cycleTime': 45})
+    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'cycleTime': 45, 'status': 'Completed'})
     const harness = new TestHarness(AppDashboard)
     harness.run(runner => {
       runner.visit('/story-journey')
@@ -18,7 +18,7 @@ describe('story journey', () => {
   })
 
   it('displays in progress text if story has not yet completed', (done) => {
-    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'ended': false, 'cycleTime': 4})
+    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'cycleTime': 4, 'status': 'In Progress'})
     const harness = new TestHarness(AppDashboard)
     harness.run(runner => {
       runner.visit('/story-journey')
@@ -29,7 +29,7 @@ describe('story journey', () => {
   })
 
   it('displays to be started text if story has not yet started', (done) => {
-    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'ended': false, 'cycleTime': 4, 'status': 'To Do'})
+    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'cycleTime': 4, 'status': 'To Do'})
     const harness = new TestHarness(AppDashboard)
     harness.run(runner => {
       runner.visit('/story-journey')

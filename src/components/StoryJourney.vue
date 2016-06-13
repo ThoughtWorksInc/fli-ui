@@ -19,18 +19,18 @@ export default {
 
   ready () {
     FliGateway.fetchStory(this.activeStory).then(story => {
-      this.toggleText(story.cycleTime, story.status, story.ended)
+      this.toggleText(story.cycleTime, story.status)
     })
   },
 
   methods: {
-    toggleText (daysInProgress, status, ended) {
-      if (ended) {
+    toggleText (daysInProgress, status) {
+      if (status === 'Completed') {
         this.daysInProgressText = 'This story completed in ' + daysInProgress + ' days'
-      } else if (status === 'To Do') {
-        this.daysInProgressText = 'This story has not yet started'
-      } else {
+      } else if (status === 'In Progress') {
         this.daysInProgressText = 'This story has been in progress for ' + daysInProgress + ' days'
+      } else {
+        this.daysInProgressText = 'This story has not yet started'
       }
     }
   }
