@@ -8,13 +8,13 @@ export function clearStubResponses () {
 
 export function createEvent (eventType, storyNumber) {
   return new Promise((resolve, reject) => {
-    resolve({ response: { data: { 'event': { 'event_type': 'event type stub' } } } })
+    resolve({ 'event_type': 'event type stub' })
   })
 }
 
 export function fetchGroups () {
   return new Promise((resolve, reject) => {
-    resolve({ response: { data: { 'groups': [
+    resolve([
       {
         'description': 'all',
         'sampleSize': 2,
@@ -26,13 +26,13 @@ export function fetchGroups () {
           'upperBound': 1
         }
       }
-    ] } } })
+    ])
   })
 }
 
 export function fetchStories () {
   return new Promise((resolve, reject) => {
-    resolve({ response: { data: { 'stories': { 'name': 'blah', 'daysInProgress': 7 } } } })
+    resolve([{ 'name': 'blah', 'daysInProgress': 7 }])
   })
 }
 
@@ -41,7 +41,5 @@ export function fetchStory (storyNumber) {
 }
 
 export function setCallback (callbackFunction) {
-  return new Promise((resolve, reject) => {
-    resolve()
-  })
+  return Promise.resolve()
 }
