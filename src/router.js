@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Dashboard from './Dashboard'
-import StoryOdyssey from './components/StoryOdyssey'
+import StoryJourney from './components/StoryJourney'
 
 Vue.use(VueRouter)
 
@@ -13,8 +13,8 @@ export function createRouter () {
     '/': {
       component: Dashboard
     },
-    '/story-odyssey': {
-      component: StoryOdyssey
+    '/story-journey': {
+      component: StoryJourney
     }
   })
 

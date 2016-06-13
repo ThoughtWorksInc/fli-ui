@@ -2,14 +2,14 @@ import AppDashboard from 'src/app-dashboard'
 import TestHarness from 'test/harness'
 
 describe('stories list', () => {
-  it('navigates to the story odyssey', (done) => {
+  it('navigates to the story journey', (done) => {
     const harness = new TestHarness(AppDashboard)
     harness.run(runner => {
       runner.visit('/')
       runner.click('.story-button')
-      runner.verifyRouted('/story-odyssey')
+      runner.verifyRouted('/story-journey')
       runner.verify($ => {
-        expect($('.story-odyssey-title').text()).toContain('Story Odyssey')
+        expect($('.story-journey-title').text()).toContain('Story Journey')
       })
     }).then(done)
   })

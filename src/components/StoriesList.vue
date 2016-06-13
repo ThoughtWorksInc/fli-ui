@@ -11,7 +11,7 @@
       </thead>
       <tbody v-for="story in stories">
         <tr>
-          <td><button v-on:click="goToOdyssey(story.name)" class="story-button">{{ story.name }}</button></td>
+          <td><button v-on:click="goToJourney(story.name)" class="story-button">{{ story.name }}</button></td>
           <td>{{story.daysInProgress}}</td>
           <td>{{story.status}}</td>
         </tr>
@@ -44,9 +44,9 @@ export default {
   },
 
   methods: {
-    goToOdyssey (storyName) {
+    goToJourney (storyName) {
       this.setActiveStory(storyName)
-      this.$router.go('story-odyssey')
+      this.$router.go('story-journey')
     }
   }
 }

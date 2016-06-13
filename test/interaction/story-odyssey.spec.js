@@ -10,9 +10,9 @@ describe('story journey', () => {
     FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'ended': true, 'cycleTime': 45})
     const harness = new TestHarness(AppDashboard)
     harness.run(runner => {
-      runner.visit('/story-odyssey')
+      runner.visit('/story-journey')
       runner.verify($ => {
-        expect($('.story-odyssey-title').text()).toContain('Story Odyssey')
+        expect($('.story-journey-title').text()).toContain('Story Journey')
         expect($('.story-days-in-progress').text()).toContain('This story has been finished in 45 days')
       })
     }).then(done)
@@ -22,9 +22,9 @@ describe('story journey', () => {
     FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'ended': false, 'cycleTime': 4})
     const harness = new TestHarness(AppDashboard)
     harness.run(runner => {
-      runner.visit('/story-odyssey')
+      runner.visit('/story-journey')
       runner.verify($ => {
-        expect($('.story-odyssey-title').text()).toContain('Story Odyssey')
+        expect($('.story-journey-title').text()).toContain('Story Journey')
         expect($('.story-days-in-progress').text()).toContain('This story has been in progress for 4 days')
       })
     }).then(done)

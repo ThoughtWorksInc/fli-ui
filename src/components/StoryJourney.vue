@@ -1,5 +1,5 @@
 <template>
-  <h2 class="story-odyssey-title"> Story Odyssey for: {{ activeStory }}</h2>
+  <h2 class="story-journey-title"> Story Journey for: {{ activeStory }}</h2>
   <p class="story-days-in-progress" v-if="storyEnded">This story has been finished in {{ daysInProgress }} days</p>
   <p class="story-days-in-progress" v-else>This story has been in progress for {{ daysInProgress }} days</p>
 </template>
