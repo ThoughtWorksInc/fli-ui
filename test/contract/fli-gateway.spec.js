@@ -41,6 +41,7 @@ describe('fli gateway', () => {
       expect(story.name).toBe('1234')
       expect(story.ended).toBeDefined()
       expect(story.cycleTime).toBeDefined()
+      expect(story.status).toBeDefined()
     }).catch(failTest).then(done)
   })
 })
