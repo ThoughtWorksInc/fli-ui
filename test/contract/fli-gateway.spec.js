@@ -33,4 +33,11 @@ describe('fli gateway', () => {
       expect(stories[0].daysInProgress).toBeDefined()
     }).catch(failTest).then(done)
   })
+
+  it('gets a single story', (done) => {
+    FliGateway.fetchStory('1234').then(story => {
+      expect(story).toBeTruthy()
+      expect(story.name).toBe('1234')
+    }).catch(failTest).then(done)
+  })
 })

@@ -54,4 +54,18 @@ describe('fli gateway', () => {
       )
     }).catch(failTest).then(done)
   })
+
+  it('gets the details for a story', (done) => {
+    Vue.http = () => Promise.resolve({'data': {'story': {'name': 'blah name'}}})
+    spyOn(Vue, 'http').and.callThrough()
+
+    FliGateway.fetchStory('blah name').then(() => {
+      expect(Vue.http).toHaveBeenCalledWith(
+        {
+          url: 'http://localhost:4567/api/story/blah%20name',
+          method: 'GET'
+        }
+      )
+    }).catch(failTest).then(done)
+  })
 })

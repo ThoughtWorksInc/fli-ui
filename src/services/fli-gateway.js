@@ -28,6 +28,14 @@ export function fetchStories () {
   }).then(response => response.data.stories)
 }
 
+export function fetchStory (storyName) {
+  const encodedStoryName = encodeURI(storyName)
+  return ajax({
+    url: config['fliAPI'] + 'api/story/' + encodedStoryName,
+    method: 'GET'
+  })
+}
+
 function ajax (options) {
   return new Promise((resolve, reject) => Vue.http(options).then(resolve).catch(reject))
 }
