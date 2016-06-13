@@ -12,7 +12,6 @@ describe('story journey', () => {
     harness.run(runner => {
       runner.visit('/story-journey')
       runner.verify($ => {
-        expect($('.story-journey-title').text()).toContain('Story Journey')
         expect($('.story-days-in-progress').text()).toContain('This story completed in 45 days')
       })
     }).then(done)
@@ -24,8 +23,18 @@ describe('story journey', () => {
     harness.run(runner => {
       runner.visit('/story-journey')
       runner.verify($ => {
-        expect($('.story-journey-title').text()).toContain('Story Journey')
         expect($('.story-days-in-progress').text()).toContain('This story has been in progress for 4 days')
+      })
+    }).then(done)
+  })
+
+  it('displays to be started text if story has not yet started', (done) => {
+    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'ended': false, 'cycleTime': 4, 'status': 'To Do'})
+    const harness = new TestHarness(AppDashboard)
+    harness.run(runner => {
+      runner.visit('/story-journey')
+      runner.verify($ => {
+        expect($('.story-days-in-progress').text()).toContain('This story has not yet started')
       })
     }).then(done)
   })
