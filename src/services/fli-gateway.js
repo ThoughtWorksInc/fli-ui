@@ -3,11 +3,11 @@ import Vue from 'vue'
 
 export function createEvent (eventType, storyNumber) {
   return ajax({
-    url: config['fliAPI'] + 'api/events',
+    url: config['fliAPI'] + 'events',
     method: 'POST',
     data: {
-      'event_type': eventType,
-      'occurred_at': new Date().toISOString(),
+      'eventType': eventType,
+      'occurredAt': new Date().toISOString(),
       'story': storyNumber
     }
   }).then(response => response.data.event)

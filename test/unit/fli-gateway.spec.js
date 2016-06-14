@@ -15,11 +15,11 @@ describe('fli gateway', () => {
     FliGateway.createEvent('blah', 'blahStory').then(() => {
       expect(Vue.http).toHaveBeenCalledWith(
         {
-          url: 'http://localhost:4567/api/events',
+          url: 'http://localhost:4567/events',
           method: 'POST',
           data: {
-            'event_type': 'blah',
-            'occurred_at': baseTime.toISOString(),
+            'eventType': 'blah',
+            'occurredAt': baseTime.toISOString(),
             'story': 'blahStory'
           }
         }

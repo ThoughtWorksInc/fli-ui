@@ -14,8 +14,8 @@ describe('fli gateway', () => {
     var storyNumber = 'blah story'
     FliGateway.createEvent(eventType, storyNumber).then(event => {
       expect(event).toBeTruthy()
-      expect(event.event_type).toBe(eventType)
-      expect(event.story_id).toBeTruthy()
+      expect(event.eventType).toBe(eventType)
+      expect(event.storyId).toBeTruthy()
     }).catch(failTest).then(done)
   })
 
@@ -28,7 +28,7 @@ describe('fli gateway', () => {
   it('gets all stories', (done) => {
     FliGateway.fetchStories().then(stories => {
       expect(stories).toBeTruthy()
-      expect(stories.length).toBeGreaterThan(1)
+      expect(stories.length).toBeGreaterThan(0)
       expect(stories[0].name).toBeDefined()
       expect(stories[0].daysInProgress).toBeDefined()
       expect(stories[0].status).toBeDefined()
@@ -41,7 +41,7 @@ describe('fli gateway', () => {
       expect(story.name).toBe('1234')
       expect(story.daysInProgress).toBeDefined()
       expect(story.status).toBeDefined()
-      expect(story.events.length).toBeGreaterThan(1)
+      expect(story.events.length).toBeGreaterThan(0)
       expect(story.events[0].type).toBeDefined()
       expect(story.events[0].occurredAt).toBeDefined()
     }).catch(failTest).then(done)
