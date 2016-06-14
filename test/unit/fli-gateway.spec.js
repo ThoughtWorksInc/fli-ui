@@ -34,7 +34,7 @@ describe('fli gateway', () => {
     FliGateway.fetchGroupsWithCondition('with kickoff').then(() => {
       expect(Vue.http).toHaveBeenCalledWith(
         {
-          url: 'http://localhost:4567/api/groups?conditions=with%20kickoff',
+          url: 'http://localhost:4567/groups?conditions=with%20kickoff',
           method: 'GET'
         }
       )

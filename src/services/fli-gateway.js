@@ -16,7 +16,7 @@ export function createEvent (eventType, storyNumber) {
 export function fetchGroupsWithCondition (condition) {
   const encodedQuery = encodeURI(condition)
   return ajax({
-    url: config['fliAPI'] + 'api/groups?conditions=' + encodedQuery,
+    url: config['fliAPI'] + 'groups?conditions=' + encodedQuery,
     method: 'GET'
   }).then(response => response.data.groups)
 }
