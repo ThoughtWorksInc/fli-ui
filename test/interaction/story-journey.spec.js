@@ -12,7 +12,18 @@ describe('story journey', () => {
     harness.run(runner => {
       runner.visit('/story-journey')
       runner.verify($ => {
-        expect($('.story-days-in-progress').text()).toContain('This story completed in 45 days')
+        expect($('.story-days-in-progress').text()).toContain('This story completed in 45 days.')
+      })
+    }).then(done)
+  })
+
+  it('uses proper grammar for stories completed in 1 day', (done) => {
+    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'cycleTime': 1, 'status': 'Completed'})
+    const harness = new TestHarness(AppDashboard)
+    harness.run(runner => {
+      runner.visit('/story-journey')
+      runner.verify($ => {
+        expect($('.story-days-in-progress').text()).toContain('This story completed in 1 day.')
       })
     }).then(done)
   })
@@ -23,7 +34,18 @@ describe('story journey', () => {
     harness.run(runner => {
       runner.visit('/story-journey')
       runner.verify($ => {
-        expect($('.story-days-in-progress').text()).toContain('This story has been in progress for 4 days')
+        expect($('.story-days-in-progress').text()).toContain('This story has been in progress for 4 days.')
+      })
+    }).then(done)
+  })
+
+  it('uses proper grammar for stories in progress for 1 day', (done) => {
+    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'cycleTime': 1, 'status': 'In Progress'})
+    const harness = new TestHarness(AppDashboard)
+    harness.run(runner => {
+      runner.visit('/story-journey')
+      runner.verify($ => {
+        expect($('.story-days-in-progress').text()).toContain('This story has been in progress for 1 day.')
       })
     }).then(done)
   })
