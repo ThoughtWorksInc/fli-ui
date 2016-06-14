@@ -1,6 +1,11 @@
 <template>
   <h2 class="story-journey-title"> Story Journey for: {{ activeStory }}</h2>
   <p class="story-days-in-progress">{{ daysInProgressText }}</p>
+  <ul v-for="event in storyEvents">
+    <li class="event">
+      {{ formatDate(event.occurredAt) }} -- {{ event.type }}
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -8,7 +13,8 @@ import * as FliGateway from 'src/services/fli-gateway'
 
 export default {
   props: {
-    daysInProgressText: ''
+    daysInProgressText: '',
+    storyEvents: []
   },
 
   vuex: {
@@ -20,6 +26,7 @@ export default {
   ready () {
     FliGateway.fetchStory(this.activeStory).then(story => {
       this.toggleText(story.cycleTime, story.status)
+      this.storyEvents = story.events
     })
   },
 
@@ -32,6 +39,11 @@ export default {
       } else {
         this.daysInProgressText = 'This story has not yet started'
       }
+    },
+
+    formatDate (date) {
+      let d = new Date(date)
+      return (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + '-' + d.getUTCFullYear() + ' ' + d.getUTCHours() + ':' + d.getMinutes()
     }
   }
 }

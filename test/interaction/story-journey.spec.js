@@ -38,4 +38,15 @@ describe('story journey', () => {
       })
     }).then(done)
   })
+
+  it('displays the events for a story', (done) => {
+    FliGateway.stub.fetchStory = Promise.resolve({'events': [{'type': 'kickoff', 'occurredAt': '2015-01-19T02:10:00.000Z'}]})
+    const harness = new TestHarness(AppDashboard)
+    harness.run(runner => {
+      runner.visit('/story-journey')
+      runner.verify($ => {
+        expect($('.event').text()).toContain('1-19-2015 2:10 -- kickoff')
+      })
+    }).then(done)
+  })
 })
