@@ -33,16 +33,11 @@ export default {
 
   methods: {
     toggleText (daysInProgress, status) {
-      var unit = ''
-      if (daysInProgress === 1) {
-        unit = 'day'
-      } else {
-        unit = 'days'
-      }
+      var unit = daysInProgress === 1 ? ' day.' : ' days.'
       if (status === 'Completed') {
-        this.daysInProgressText = 'This story completed in ' + daysInProgress + ' ' + unit + '.'
+        this.daysInProgressText = 'This story completed in ' + daysInProgress + unit
       } else if (status === 'In Progress') {
-        this.daysInProgressText = 'This story has been in progress for ' + daysInProgress + ' ' + unit + '.'
+        this.daysInProgressText = 'This story has been in progress for ' + daysInProgress + unit
       } else {
         this.daysInProgressText = 'This story has not yet started'
       }
