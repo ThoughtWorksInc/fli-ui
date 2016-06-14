@@ -8,7 +8,7 @@ export function clearStubResponses () {
 
 export function createEvent (eventType, storyNumber) {
   return new Promise((resolve, reject) => {
-    resolve({ 'event_type': 'event type stub' })
+    resolve({ 'eventType': 'event type stub' })
   })
 }
 
@@ -41,5 +41,5 @@ export function fetchStory (storyNumber) {
 }
 
 export function setCallback (callbackFunction) {
-  return Promise.resolve()
+  return Promise.resolve({})
 }
