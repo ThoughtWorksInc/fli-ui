@@ -48,7 +48,7 @@ describe('fli gateway', () => {
     FliGateway.fetchStories().then(() => {
       expect(Vue.http).toHaveBeenCalledWith(
         {
-          url: 'http://localhost:4567/api/stories',
+          url: 'http://localhost:4567/stories',
           method: 'GET'
         }
       )

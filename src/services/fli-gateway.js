@@ -23,7 +23,7 @@ export function fetchGroupsWithCondition (condition) {
 
 export function fetchStories () {
   return ajax({
-    url: config['fliAPI'] + 'api/stories',
+    url: config['fliAPI'] + 'stories',
     method: 'GET'
   }).then(response => response.data.stories)
 }
