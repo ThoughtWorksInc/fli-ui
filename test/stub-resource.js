@@ -37,7 +37,7 @@ export function fetchStories () {
 }
 
 export function fetchStory (storyNumber) {
-  return stub.fetchStory || Promise.resolve({ 'name': 'blah', 'ended': false, 'cycleTime': 3 })
+  return stub.fetchStory || Promise.resolve({ 'name': 'blah', 'status': 'In Progress', 'daysInProgress': 3 })
 }
 
 export function setCallback (callbackFunction) {

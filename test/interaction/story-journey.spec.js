@@ -7,7 +7,7 @@ describe('story journey', () => {
   afterEach(() => FliGateway.clearStubResponses())
 
   it('displays completed text if story has ended', (done) => {
-    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'cycleTime': 45, 'status': 'Completed'})
+    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'daysInProgress': 45, 'status': 'Completed'})
     const harness = new TestHarness(AppDashboard)
     harness.run(runner => {
       runner.visit('/story-journey')
@@ -18,7 +18,7 @@ describe('story journey', () => {
   })
 
   it('uses proper grammar for stories completed in 1 day', (done) => {
-    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'cycleTime': 1, 'status': 'Completed'})
+    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'daysInProgress': 1, 'status': 'Completed'})
     const harness = new TestHarness(AppDashboard)
     harness.run(runner => {
       runner.visit('/story-journey')
@@ -29,7 +29,7 @@ describe('story journey', () => {
   })
 
   it('displays in progress text if story has not yet completed', (done) => {
-    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'cycleTime': 4, 'status': 'In Progress'})
+    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'daysInProgress': 4, 'status': 'In Progress'})
     const harness = new TestHarness(AppDashboard)
     harness.run(runner => {
       runner.visit('/story-journey')
@@ -40,7 +40,7 @@ describe('story journey', () => {
   })
 
   it('uses proper grammar for stories in progress for 1 day', (done) => {
-    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'cycleTime': 1, 'status': 'In Progress'})
+    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'daysInProgress': 1, 'status': 'In Progress'})
     const harness = new TestHarness(AppDashboard)
     harness.run(runner => {
       runner.visit('/story-journey')
@@ -51,7 +51,7 @@ describe('story journey', () => {
   })
 
   it('displays to be started text if story has not yet started', (done) => {
-    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'cycleTime': 4, 'status': 'To Do'})
+    FliGateway.stub.fetchStory = Promise.resolve({'name': 'whatever', 'daysInProgress': 4, 'status': 'To Do'})
     const harness = new TestHarness(AppDashboard)
     harness.run(runner => {
       runner.visit('/story-journey')

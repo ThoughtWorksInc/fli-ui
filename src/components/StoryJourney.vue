@@ -26,7 +26,7 @@ export default {
 
   ready () {
     FliGateway.fetchStory(this.activeStory).then(story => {
-      this.toggleText(story.cycleTime, story.status)
+      this.toggleText(story.daysInProgress, story.status)
       this.storyEvents = story.events
     })
   },
