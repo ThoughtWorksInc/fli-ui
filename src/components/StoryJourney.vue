@@ -1,6 +1,7 @@
 <template>
   <h2 class="story-journey-title"> Story Journey for: {{ activeStory }}</h2>
   <p class="story-days-in-progress">{{ daysInProgressText }}</p>
+  <h4>Events</h4>
   <ul v-for="event in storyEvents">
     <li class="event">
       {{ formatDate(event.occurredAt) }} -- {{ event.type }}
