@@ -61,6 +61,7 @@ describe('fli gateway', () => {
       expect(story.daysInProgress).toBeDefined()
       expect(story.status).toBeDefined()
       expect(story.events.length).toBeGreaterThan(0)
+      expect(story.events[0].id).toBeDefined()
       expect(story.events[0].type).toBeDefined()
       expect(story.events[0].occurredAt).toBeDefined()
     }).catch(failTest).then(done)
