@@ -68,4 +68,18 @@ describe('fli gateway', () => {
       )
     }).catch(failTest).then(done)
   })
+
+  it('deletes an event from a story', (done) => {
+    Vue.http = () => Promise.resolve({})
+    spyOn(Vue, 'http').and.callThrough()
+
+    FliGateway.deleteEvent(7).then(() => {
+      expect(Vue.http).toHaveBeenCalledWith(
+        {
+          url: 'http://localhost:4567/events/7',
+          method: 'DELETE'
+        }
+      )
+    }).catch(failTest).then(done)
+  })
 })

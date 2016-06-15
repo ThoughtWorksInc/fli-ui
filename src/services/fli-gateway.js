@@ -36,6 +36,13 @@ export function fetchStory (storyName) {
   }).then(response => response.data.story)
 }
 
+export function deleteEvent (eventId) {
+  return ajax({
+    url: config['fliAPI'] + 'events/' + eventId,
+    method: 'DELETE'
+  })
+}
+
 function ajax (options) {
   return new Promise((resolve, reject) => Vue.http(options).then(resolve).catch(reject))
 }
