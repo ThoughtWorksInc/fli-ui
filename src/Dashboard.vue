@@ -17,6 +17,7 @@
   </main>
 </template>
 <script>
+import './scss/main.scss'
 import AddEvent from './components/AddEvent'
 import CycleTimeGraph from './components/CycleTimeGraph'
 import StoriesList from './components/StoriesList'
