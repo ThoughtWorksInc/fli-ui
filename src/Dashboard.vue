@@ -2,13 +2,16 @@
   <main>
     <div>
       <add-event></add-event>
-      <div>
+      <div class="main-container">
         <div class="cycle-time-graph">
           <cycle-time-graph></cycle-time-graph>
         </div>
         <div class="stories-list">
           <stories-list></stories-list>
         </div>
+      </div>
+      <div>
+        <a v-link="{ path: '/about' }">About FLI</a>
       </div>
     </div>
   </main>
@@ -36,5 +39,9 @@ export default {
 
 .stories-list {
   display: inline-block;
+}
+
+.main-container {
+  height: 700px;
 }
 </style>

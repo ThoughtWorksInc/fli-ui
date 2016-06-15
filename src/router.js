@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import Dashboard from './Dashboard'
 import StoryJourney from './components/StoryJourney'
+import About from './components/About'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,9 @@ export function createRouter () {
     },
     '/story-journey': {
       component: StoryJourney
+    },
+    '/about': {
+      component: About
     }
   })
 
