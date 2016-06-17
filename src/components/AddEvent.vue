@@ -35,7 +35,6 @@ export default {
   methods: {
     addEvent () {
       FliGateway.createEvent(this.eventType, this.storyNumber).then(event => {
-        console.log(event)
         this.eventId = event.id
         this.eventAdded = true
       })
