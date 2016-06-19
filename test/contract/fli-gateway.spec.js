@@ -19,7 +19,7 @@ describe('fli gateway', () => {
     }).catch(failTest).then(done)
   })
 
-  it('gets cycle time data for stories segmented by conditions', (done) => {
+  it('has cycle time stats for the story group', (done) => {
     FliGateway.fetchGroupsWithCondition('all').then(groups => {
       expect(groups.length).toBe(1)
       var stats = groups[0].cycleTimeStatistics
@@ -28,6 +28,19 @@ describe('fli gateway', () => {
       expect(stats.lowerBound).toBeDefined()
       expect(stats.upperBound).toBeDefined()
       expect(stats.standardDeviation).toBeDefined()
+    }).catch(failTest).then(done)
+  })
+
+  it('has cycle time distribution for the story group', (done) => {
+    FliGateway.fetchGroupsWithCondition('all').then(groups => {
+      expect(groups.length).toBe(1)
+      var distribution = groups[0].cycleTimeDistribution
+      expect(distribution.start).toBeDefined()
+      expect(distribution.end).toBeDefined()
+      expect(distribution.values).toBeDefined()
+      // need to introduce a completed story - change above to lenth > 0
+      // expect(distribution.values[0].point).toBeDefined()
+      // expect(distribution.values[0].count).toBeDefined()
     }).catch(failTest).then(done)
   })
 
