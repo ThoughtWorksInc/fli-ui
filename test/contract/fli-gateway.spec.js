@@ -22,6 +22,12 @@ describe('fli gateway', () => {
   it('gets cycle time data for stories segmented by conditions', (done) => {
     FliGateway.fetchGroupsWithCondition('all').then(groups => {
       expect(groups.length).toBe(1)
+      var stats = groups[0].cycleTimeStatistics
+      expect(stats.mean).toBeDefined()
+      expect(stats.median).toBeDefined()
+      expect(stats.lowerBound).toBeDefined()
+      expect(stats.upperBound).toBeDefined()
+      expect(stats.standardDeviation).toBeDefined()
     }).catch(failTest).then(done)
   })
 
