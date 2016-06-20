@@ -4,6 +4,7 @@
   <h4>Events</h4>
   <ul v-for="event in storyEvents">
     <li class="event">
+      <button v-on:click="deleteEvent(event)" class="delete-event">delete</button>
       {{ formatDate(event.occurredAt) }} -- {{ event.type }}
     </li>
   </ul>
@@ -46,6 +47,15 @@ export default {
     formatDate (date) {
       let d = new Date(date)
       return (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + '-' + d.getUTCFullYear() + ' ' + d.getUTCHours() + ':' + d.getMinutes()
+    },
+
+    deleteEvent (event) {
+      FliGateway.deleteEvent(event.id).then(() => {
+        FliGateway.fetchStory(this.activeStory).then(updatedStory => {
+          this.toggleText(updatedStory.daysInProgress, updatedStory.status)
+          this.storyEvents = updatedStory.events
+        })
+      })
     }
   }
 }

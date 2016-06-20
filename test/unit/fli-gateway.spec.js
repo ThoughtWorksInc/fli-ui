@@ -70,7 +70,7 @@ describe('fli gateway', () => {
   })
 
   it('deletes an event from a story', (done) => {
-    Vue.http = () => Promise.resolve({})
+    Vue.http = () => Promise.resolve({'data': {'story': {}}})
     spyOn(Vue, 'http').and.callThrough()
 
     FliGateway.deleteEvent(7).then(() => {

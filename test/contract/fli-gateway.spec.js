@@ -68,11 +68,11 @@ describe('fli gateway', () => {
   })
 
   it('deletes an event from a story', (done) => {
-    FliGateway.createEvent('blah event', 'blah story').then(event => {
-      let eventId = event.id
+    FliGateway.createEvent('blah type', 'blah story').then(event => {
+      const eventId = event.id
       FliGateway.deleteEvent(eventId).then(response => {
         expect(response.status).toBe(200)
-      })
-    }).catch(failTest).then(done)
+      }).catch(failTest).then(done)
+    })
   })
 })
