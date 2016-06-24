@@ -9,6 +9,10 @@
         </div>
         <label for="story_number">Story Number</label>
         <input id='story_number' class="story-number-input" type="text" v-model="storyNumber"/>
+        <label for="occur_date">Date</label>
+        <input id='occur_date' type="date" v-model="occurDate"/>
+        <label for="occur_time">Time (HH:mm)</label>
+        <input id='occur_time' type="text" v-model="occurTime"/>
         <button v-on:click="addEvent" class="add-event-button" type="button" role="button">Add Event</button>
       </fieldset>
     </form>
@@ -28,13 +32,14 @@ export default {
     return {
       eventType: '',
       storyNumber: '',
-      occurredAt: ''
+      occurDate: '',
+      occurTime: ''
     }
   },
 
   methods: {
     addEvent () {
-      FliGateway.createEvent(this.eventType, this.storyNumber).then(event => {
+      FliGateway.createEvent(this.eventType, this.storyNumber, this.occurDate, this.occurTime).then(event => {
         this.eventId = event.id
         this.eventAdded = true
       })

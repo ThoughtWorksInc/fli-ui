@@ -1,13 +1,21 @@
 import config from 'config'
 import Vue from 'vue'
 
-export function createEvent (eventType, storyNumber) {
+export function createEvent (eventType, storyNumber, occurDate, occurTime) {
+  var occurredAt = new Date().toISOString()
+  if (occurDate !== undefined && occurDate !== '') {
+    occurredAt = new Date(Date.parse(occurDate))
+    if (occurTime !== undefined && occurTime !== '') {
+      occurredAt.setUTCHours(occurTime.substring(0, 2), occurTime.substring(3, 5))
+    }
+    occurredAt = occurredAt.toISOString()
+  }
   return ajax({
     url: config['fliAPI'] + 'events',
     method: 'POST',
     data: {
       'eventType': eventType,
-      'occurredAt': new Date().toISOString(),
+      'occurredAt': occurredAt,
       'story': storyNumber
     }
   }).then(response => response.data.event)

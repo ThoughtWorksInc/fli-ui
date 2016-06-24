@@ -6,13 +6,13 @@ describe('fli gateway', () => {
     expect(error).toBeUndefined()
   }
 
-  it('calls events endpoint', (done) => {
+  it('calls events endpoint with a default of current time if date/time are undefined', (done) => {
     Vue.http = () => Promise.resolve({'data': {event: 'some garbage'}})
     spyOn(Vue, 'http').and.callThrough()
     var baseTime = new Date(2016, 1, 23)
     window.jasmine.clock().mockDate(baseTime)
 
-    FliGateway.createEvent('blah', 'blahStory').then(() => {
+    FliGateway.createEvent('blah', 'blahStory', undefined, undefined).then(() => {
       expect(Vue.http).toHaveBeenCalledWith(
         {
           url: 'http://localhost:4567/events',
@@ -24,6 +24,43 @@ describe('fli gateway', () => {
           }
         }
       )
+    }).catch(failTest).then(done)
+  })
+
+  it('calls events endpoint with a default of current time', (done) => {
+    Vue.http = () => Promise.resolve({'data': {event: 'some garbage'}})
+    spyOn(Vue, 'http').and.callThrough()
+    var baseTime = new Date(2016, 1, 23)
+    window.jasmine.clock().mockDate(baseTime)
+
+    FliGateway.createEvent('blah', 'blahStory', '', '').then(() => {
+      expect(Vue.http).toHaveBeenCalledWith(
+        {
+          url: 'http://localhost:4567/events',
+          method: 'POST',
+          data: {
+            'eventType': 'blah',
+            'occurredAt': baseTime.toISOString(),
+            'story': 'blahStory'
+          }
+        }
+      )
+    }).catch(failTest).then(done)
+  })
+
+  it('calls events endpoint with a specified time', (done) => {
+    Vue.http = () => Promise.resolve({'data': {event: 'some garbage'}})
+    spyOn(Vue, 'http').and.callThrough()
+    FliGateway.createEvent('blah', 'blahStory', '07/08/2015', '13:00').then(() => {
+      expect(Vue.http).toHaveBeenCalledWith({
+        url: 'http://localhost:4567/events',
+        method: 'POST',
+        data: {
+          'eventType': 'blah',
+          'occurredAt': '2015-07-08T13:00:00.000Z',
+          'story': 'blahStory'
+        }
+      })
     }).catch(failTest).then(done)
   })
 
