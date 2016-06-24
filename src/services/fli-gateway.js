@@ -2,14 +2,7 @@ import config from 'config'
 import Vue from 'vue'
 
 export function createEvent (eventType, storyNumber, occurDate, occurTime) {
-  var occurredAt = new Date().toISOString()
-  if (occurDate !== undefined && occurDate !== '') {
-    occurredAt = new Date(Date.parse(occurDate))
-    if (occurTime !== undefined && occurTime !== '') {
-      occurredAt.setUTCHours(occurTime.substring(0, 2), occurTime.substring(3, 5))
-    }
-    occurredAt = occurredAt.toISOString()
-  }
+  const occurredAt = parseDateTime(occurDate, occurTime)
   return ajax({
     url: config['fliAPI'] + 'events',
     method: 'POST',
@@ -49,6 +42,18 @@ export function deleteEvent (eventId) {
     url: config['fliAPI'] + 'events/' + eventId,
     method: 'DELETE'
   })
+}
+
+function parseDateTime (occurDate, occurTime) {
+  var occurredAt = new Date().toISOString()
+  if (occurDate !== undefined && occurDate !== '') {
+    occurredAt = new Date(Date.parse(occurDate))
+    if (occurTime !== undefined && occurTime !== '') {
+      occurredAt.setUTCHours(occurTime.substring(0, 2), occurTime.substring(3, 5))
+    }
+    occurredAt = occurredAt.toISOString()
+  }
+  return occurredAt
 }
 
 function ajax (options) {
