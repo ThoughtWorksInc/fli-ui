@@ -5,6 +5,8 @@
       <div class="main-container">
         <div class="cycle-time-graph">
           <cycle-time-graph></cycle-time-graph>
+        </div>
+        <div class="distribution">
           <a v-link="{ path: '/distribution' }">view cycle time distribution</a>
         </div>
         <div class="stories-list">
