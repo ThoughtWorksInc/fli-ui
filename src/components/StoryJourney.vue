@@ -29,23 +29,23 @@ export default {
   },
 
   ready () {
+    FliGateway.fetchStory(this.activeStory).then(story => {
+      this.toggleText(story.daysInProgress, story.status)
+      this.storyEvents = story.events
+    })
     GoogleGateway.setCallback(this.drawChart)
   },
 
   methods: {
     drawChart () {
-      FliGateway.fetchStory(this.activeStory).then(story => {
-        this.toggleText(story.daysInProgress, story.status)
-        this.storyEvents = story.events
-        for (const event of this.storyEvents) {
-          Timeline.addDataSeries(
-            event.type,
-            event.occurredAt,
-            event.occurredAt
-          )
-        }
-        Timeline.drawTimeline()
-      })
+      for (const event of this.storyEvents) {
+        Timeline.addDataSeries(
+          event.type,
+          event.occurredAt,
+          event.occurredAt
+        )
+      }
+      Timeline.drawTimeline()
     },
 
     toggleText (daysInProgress, status) {
