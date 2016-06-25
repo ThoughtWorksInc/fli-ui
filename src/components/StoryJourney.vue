@@ -38,14 +38,18 @@ export default {
 
   methods: {
     drawChart () {
-      for (const event of this.storyEvents) {
-        Timeline.addDataSeries(
-          event.type,
-          event.occurredAt,
-          event.occurredAt
-        )
-      }
-      Timeline.drawTimeline()
+      FliGateway.fetchStory(this.activeStory).then(story => {
+        this.toggleText(story.daysInProgress, story.status)
+        this.storyEvents = story.events
+        for (const event of this.storyEvents) {
+          Timeline.addDataSeries(
+            event.type,
+            event.occurredAt,
+            event.occurredAt
+          )
+        }
+        Timeline.drawTimeline()
+      })
     },
 
     toggleText (daysInProgress, status) {
