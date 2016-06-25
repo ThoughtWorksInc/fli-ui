@@ -2,6 +2,7 @@
   <h2 class="story-journey-title"> Story Journey for: {{ activeStory }}</h2>
   <p class="story-days-in-progress">{{ daysInProgressText }}</p>
   <h4>Events</h4>
+  <div id="story_timeline"></div>
   <ul v-for="event in storyEvents">
     <li class="event">
       <button v-on:click="deleteEvent(event)" class="delete-event">delete</button>
@@ -12,6 +13,8 @@
 
 <script>
 import * as FliGateway from 'src/services/fli-gateway'
+import * as GoogleGateway from 'src/services/google-gateway'
+import * as Timeline from 'src/services/story-timeline'
 
 export default {
   props: {
@@ -26,13 +29,25 @@ export default {
   },
 
   ready () {
-    FliGateway.fetchStory(this.activeStory).then(story => {
-      this.toggleText(story.daysInProgress, story.status)
-      this.storyEvents = story.events
-    })
+    GoogleGateway.setCallback(this.drawChart)
   },
 
   methods: {
+    drawChart () {
+      FliGateway.fetchStory(this.activeStory).then(story => {
+        this.toggleText(story.daysInProgress, story.status)
+        this.storyEvents = story.events
+        for (const event of this.storyEvents) {
+          Timeline.addDataSeries(
+            event.type,
+            event.occurredAt,
+            event.occurredAt
+          )
+        }
+        Timeline.drawTimeline()
+      })
+    },
+
     toggleText (daysInProgress, status) {
       var unit = daysInProgress === 1 ? ' day.' : ' days.'
       if (status === 'Completed') {
