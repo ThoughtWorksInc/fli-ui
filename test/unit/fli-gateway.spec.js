@@ -48,6 +48,12 @@ describe('fli gateway', () => {
     }).catch(failTest).then(done)
   })
 
+  it('does not create an event for an event in the future', (done) => {
+    FliGateway.createEvent('blah', 'blahStory', '07/08/2999', '13:00').then(response => {
+      expect(response.error).toContain('Event must occur in the past')
+    }).catch(failTest).then(done)
+  })
+
   it('calls events endpoint with a specified time', (done) => {
     Vue.http = () => Promise.resolve({'data': {event: 'some garbage'}})
     spyOn(Vue, 'http').and.callThrough()

@@ -3,6 +3,9 @@ import Vue from 'vue'
 
 export function createEvent (eventType, storyNumber, occurDate, occurTime) {
   const occurredAt = parseDateTime(occurDate, occurTime)
+  if (new Date(occurredAt) > new Date()) {
+    return Promise.resolve({'error': 'Event must occur in the past'})
+  }
   return ajax({
     url: config['fliAPI'] + 'events',
     method: 'POST',
