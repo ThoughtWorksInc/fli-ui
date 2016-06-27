@@ -18,6 +18,7 @@
     </form>
   </div>
   <div class="newly-added-event-text" v-if="eventAdded">Event added with id: {{ eventId }}</div>
+  <div class="failure-text" v-if="error">{{ errorMessage }}</div>
 </template>
 <script>
 import * as FliGateway from 'src/services/fli-gateway'
@@ -25,7 +26,9 @@ import * as FliGateway from 'src/services/fli-gateway'
 export default {
   props: {
     eventAdded: false,
-    eventId: ''
+    eventId: '',
+    errorMessage: '',
+    error: false
   },
 
   data () {
@@ -39,9 +42,16 @@ export default {
 
   methods: {
     addEvent () {
-      FliGateway.createEvent(this.eventType, this.storyNumber, this.occurDate, this.occurTime).then(event => {
-        this.eventId = event.id
-        this.eventAdded = true
+      FliGateway.createEvent(this.eventType, this.storyNumber, this.occurDate, this.occurTime).then(response => {
+        if (response.error !== undefined) {
+          this.error = true
+          this.errorMessage = response.error
+          this.eventAdded = false
+        } else {
+          this.eventId = response.id
+          this.eventAdded = true
+          this.error = false
+        }
       })
     }
   }

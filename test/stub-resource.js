@@ -7,7 +7,7 @@ export function clearStubResponses () {
 }
 
 export function createEvent (eventType, storyNumber) {
-  return new Promise((resolve, reject) => {
+  return stub.createEvent || new Promise((resolve, reject) => {
     resolve({ 'eventType': 'event type stub' })
   })
 }
