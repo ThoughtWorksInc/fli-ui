@@ -1,6 +1,18 @@
 # FLI UI
 
 ## Getting Started
+
+### Install NVM
+```
+$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
+```
+close and reopen terminal
+
+```
+$ nvm use
+```
+
+### Install Dependencies
 ```
 $ npm install
 ```
