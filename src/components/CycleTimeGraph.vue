@@ -11,7 +11,7 @@
             <b>with</b> <i>event</i> <b>versus</b> <b>without</b> <i>event</i>
         </span>
       </div>
-      <input id='conditions' class="conditions-input" type="text" v-model="inputConditions"/>
+      <input id='conditions' class="conditions-input" type="text" v-model="inputConditions" v-on:keyup.enter="updateConditions"  />
       <button v-on:click="updateConditions" type="button" role="button">Compare</button>
     </form>
   </div>
