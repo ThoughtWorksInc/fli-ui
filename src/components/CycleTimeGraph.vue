@@ -3,6 +3,14 @@
   <div>
     <form>
       <label for="conditions">Conditions</label>
+      <div class="tooltip">
+        (?)
+        <span class="tooltiptext">
+            <b>with</b> <i>event</i> <br>
+            <b>without</b> <i>event</i> <br>
+            <b>with</b> <i>event</i> <b>versus</b> <b>without</b> <i>event</i>
+        </span>
+      </div>
       <input id='conditions' class="conditions-input" type="text" v-model="inputConditions"/>
       <button v-on:click="updateConditions" type="button" role="button">Compare</button>
     </form>
