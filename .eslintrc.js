@@ -17,7 +17,8 @@ module.exports = {
     spyOn: false,
     Event: false,
     beforeEach: false,
-    afterEach: false
+    afterEach: false,
+    jasmine: true
   },
   // add your custom rules here
   'rules': {

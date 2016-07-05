@@ -11,9 +11,22 @@
             <b>with</b> <i>event</i> <b>versus</b> <b>without</b> <i>event</i>
         </span>
       </div>
-      <input id='conditions' class="conditions-input" type="text" v-model="inputConditions" v-on:keyup.enter="updateConditions"  />
+      <input id='conditions' 
+             class="conditions-input" 
+             type="text" 
+             v-model="inputConditions" 
+             v-on:keyup.enter="updateConditions"
+             v-bind:class="{ 'invalid': conditionsInvalid }"
+      />
       <button v-on:click="updateConditions" type="button" role="button">Compare</button>
     </form>
+  </div>
+  <div id="conditions-message" class="error" v-show="conditionsInvalid">
+    <div> Uh oh! Your comparison doesn't seem valid.</div>
+    <div>
+      Please check if there are any mispellings or non existant activities i
+      or modifiers in your condition.
+    </div>
   </div>
   <div id="cycleTime"></div>
 </template>
@@ -27,7 +40,8 @@ export default {
   data () {
     return {
       condition: 'all',
-      inputConditions: ''
+      inputConditions: '',
+      conditionsInvalid: false
     }
   },
 
@@ -42,8 +56,14 @@ export default {
     },
 
     drawChart () {
+      var self = this
       AggregateCycleTime.clearDataSeries()
-      FliGateway.fetchGroupsWithCondition(this.condition).then(groups => {
+
+      var groupsPromise = FliGateway.fetchGroupsWithCondition(this.condition)
+
+      var successCallback = function (groups) {
+        self.conditionsInvalid = false
+
         for (const group of groups) {
           AggregateCycleTime.addDataSeries(
             group.description,
@@ -54,16 +74,32 @@ export default {
             group.cycleTimeStatistics.upperBound
           )
         }
-      }).then(() => {
+
         AggregateCycleTime.drawCycleTime()
-      })
+      }
+
+      var failureCallback = function () {
+        self.conditionsInvalid = true
+        AggregateCycleTime.drawCycleTime()
+      }
+
+      groupsPromise.then(successCallback, failureCallback)
     }
   }
 }
 </script>
 
 <style>
-.conditions-input {
-  width: 30%;
-}
+  .conditions-input {
+    width: 30%;
+  }
+
+  .conditions-input.invalid {
+    background-color: #ffdddd;
+  }
+
+  #conditions-message.error {
+    color: red;
+  }
+
 </style>
