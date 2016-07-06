@@ -55,9 +55,11 @@ describe('fli gateway', () => {
   })
 
   it('gets a single story', (done) => {
-    FliGateway.fetchStory('1234').then(story => {
+    // This test requires a story with the name Login to be created.
+    // You can create it using rake db:fixtures:load
+    FliGateway.fetchStory('Login').then(story => {
       expect(story).toBeTruthy()
-      expect(story.name).toBe('1234')
+      expect(story.name).toBe('Login')
       expect(story.daysInProgress).toBeDefined()
       expect(story.status).toBeDefined()
       expect(story.events.length).toBeGreaterThan(0)
