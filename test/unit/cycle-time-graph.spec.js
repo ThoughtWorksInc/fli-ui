@@ -10,40 +10,44 @@ describe('Cycle Time Graph', () => {
     expect(CycleTimeGraph.data().conditionsInvalid).toBeFalsy()
   })
 
-  it('should recognize when invalid conditions are submitted', (done) => {
+  function componentThatFailsFetchAction () {
     var inject = require('!!vue?inject!../../src/components/CycleTimeGraph.vue')
 
-    var clearDataMethod = jasmine.createSpy('clearDataMethod')
-    var drawCycleTimeMethod = jasmine.createSpy('drawCycleTime')
-
-    var componentWithMock = inject({
+    var componentWithMocks = inject({
       'src/services/aggregate-cycle-time': {
-        clearDataSeries () {
-          clearDataMethod()
-        },
-        drawCycleTime () {
-          drawCycleTimeMethod()
-        }
+        clearDataSeries () {},
+        drawCycleTime () {}
       },
       'src/services/fli-gateway': {
         fetchGroupsWithCondition () {
           return Promise.reject('blah')
         }
       }
-
     })
 
-    const vm = new Vue({
+    return componentWithMocks
+  }
+
+  function createViewModel (component) {
+    var vm = new Vue({
       template: '<div><test></test></div>',
       components: {
-        'test': componentWithMock
+        'test': component
       }
     }).$mount()
 
-    vm.$children[0].drawChart()
+    return vm
+  }
 
+  it('should recognize when invalid conditions are submitted', (done) => {
+    var mockedComponent = componentThatFailsFetchAction()
+    var viewModel = createViewModel(mockedComponent)
+
+    viewModel.$children[0].drawChart()
+
+    // setting expectation in the future since this is testing and async action
     setTimeout(function () {
-      expect(vm.$children[0].conditionsInvalid).toBeTruthy()
+      expect(viewModel.$children[0].conditionsInvalid).toBeTruthy()
       done()
     }, 1000)
   })
