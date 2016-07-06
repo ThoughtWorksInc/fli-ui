@@ -24,7 +24,7 @@
   <div id="conditions-message" class="error" v-show="conditionsInvalid">
     <div> Uh oh! Your comparison doesn't seem valid.</div>
     <div>
-      Please check if there are any mispellings or non existant activities i
+      Please check if there are any mispellings or non existant activities
       or modifiers in your condition.
     </div>
   </div>
