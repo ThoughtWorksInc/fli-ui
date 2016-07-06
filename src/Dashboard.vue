@@ -4,17 +4,21 @@
       <add-event></add-event>
       <div class="main-container">
         <div class="cycle-time-graph">
-          <cycle-time-graph></cycle-time-graph>
+          <div>
+            <cycle-time-graph></cycle-time-graph>
+          </div>
+          <div>
+            <a v-link="{ path: '/about' }">About FLI</a>
+          </div>
         </div>
-        <div class="distribution">
-          <a v-link="{ path: '/distribution' }">view cycle time distribution</a>
+        <div class="dist-and-stories">
+          <div>
+            <a v-link="{ path: '/distribution' }">view cycle time distribution</a>
+          </div>
+          <div>
+            <stories-list></stories-list>
+          </div>
         </div>
-        <div class="stories-list">
-          <stories-list></stories-list>
-        </div>
-      </div>
-      <div>
-        <a v-link="{ path: '/about' }">About FLI</a>
       </div>
     </div>
   </main>
@@ -36,12 +40,11 @@ export default {
 
 <style>
 .cycle-time-graph {
-  width: 60%;
   float: left;
-  display: inline-block;
+  width: 60%;
 }
 
-.stories-list {
+.dist-and-stories {
   display: inline-block;
 }
 
