@@ -1,6 +1,12 @@
 <template>
   <h2 class="story-journey-title"> Story Journey for: {{ activeStory }}</h2>
   <p class="story-days-in-progress">{{ daysInProgressText }}</p>
+  <h4>Characteristics</h4>
+  <ul v-for="characteristic in storyCharacteristics">
+    <li class="characteristic">
+      {{ characteristic.type }} -- {{ characteristic.value }}
+    </li>
+  </ul>
   <h4>Events</h4>
   <ul v-for="event in storyEvents">
     <li class="event">
@@ -16,7 +22,8 @@ import * as FliGateway from 'src/services/fli-gateway'
 export default {
   props: {
     daysInProgressText: '',
-    storyEvents: []
+    storyEvents: [],
+    storyCharacteristics: []
   },
 
   vuex: {
@@ -29,6 +36,7 @@ export default {
     FliGateway.fetchStory(this.activeStory).then(story => {
       this.toggleText(story.daysInProgress, story.status)
       this.storyEvents = story.events
+      this.storyCharacteristics = story.characteristics
     })
   },
 

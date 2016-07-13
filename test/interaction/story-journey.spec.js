@@ -71,4 +71,17 @@ describe('story journey', () => {
       })
     }).then(done)
   })
+
+  it('displays the characteristics for a story', (done) => {
+    FliGateway.stub.fetchStory = Promise.resolve(
+      {'characteristics': [{'type': 'size', 'value': 'small'}]}
+    )
+    const harness = new TestHarness(AppDashboard)
+    harness.run(runner => {
+      runner.visit('/story-journey')
+      runner.verify($ => {
+        expect($('.characteristic').text()).toContain('size -- small')
+      })
+    }).then(done)
+  })
 })
