@@ -54,6 +54,12 @@ describe('fli gateway', () => {
     }).catch(failTest).then(done)
   })
 
+  it('gets all the characateristic values for a characteristic', (done) => {
+    FliGateway.fetchCharacteristicValues('size').then(values => {
+      expect(values.sort()).toEqual(['large','medium','small'])
+    }).catch(failTest).then(done)
+  })
+
   it('gets a single story', (done) => {
     // This test requires a story with the name Login to be created.
     // You can create it using rake db:fixtures:load

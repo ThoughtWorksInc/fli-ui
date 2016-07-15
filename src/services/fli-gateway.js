@@ -47,6 +47,13 @@ export function deleteEvent (eventId) {
   })
 }
 
+export function fetchCharacteristicValues (characteristic) {
+  return ajax({
+    url: config['fliAPI'] + 'characteristic/' + characteristic,
+    method: 'GET'
+  }).then(response => response.data.characteristicValues)
+}
+
 function parseDateTime (occurDate, occurTime) {
   var occurredAt = new Date().toISOString()
   if (occurDate !== undefined && occurDate !== '') {

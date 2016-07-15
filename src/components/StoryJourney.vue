@@ -1,19 +1,27 @@
 <template>
   <h2 class="story-journey-title"> Story Journey for: {{ activeStory }}</h2>
   <p class="story-days-in-progress">{{ daysInProgressText }}</p>
-  <h4>Characteristics</h4>
-  <ul v-for="characteristic in storyCharacteristics">
-    <li class="characteristic">
-      {{ characteristic.type }} -- {{ characteristic.value }}
-    </li>
-  </ul>
-  <h4>Events</h4>
-  <ul v-for="event in storyEvents">
-    <li class="event">
-      <button v-on:click="deleteEvent(event)" class="delete-event">delete</button>
-      {{ formatDate(event.occurredAt) }} -- {{ event.type }}
-    </li>
-  </ul>
+  <div v-if="storyCharacteristics.length > 0">
+    <h4>Characteristics</h4>
+    <ul v-for="characteristic in storyCharacteristics">
+      <li v-if="characteristic.value !== 'unassigned' " class="characteristic">
+        {{ characteristic.type }} -- {{ characteristic.value }}
+      </li>
+      <li v-else class="characteristic">
+        {{ characteristic.type }} --   
+      </li>
+
+    </ul>
+  </div>
+  <div>
+    <h4>Events</h4>
+    <ul v-for="event in storyEvents">
+      <li class="event">
+        <button v-on:click="deleteEvent(event)" class="delete-event">delete</button>
+        {{ formatDate(event.occurredAt) }} -- {{ event.type }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -65,6 +73,7 @@ export default {
         })
       })
     }
+
   }
 }
 </script>
