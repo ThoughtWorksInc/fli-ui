@@ -1,6 +1,8 @@
 <template>
-  <h2>All Stories</h2>
+  <h2>Stories</h2>
   <div>
+    <label><input type="checkbox" id="show-all__test" value="all_stories" v-model="checked"> Show all stories</label>
+
     <table style="width:100%">
       <thead>
         <tr>
@@ -9,11 +11,11 @@
           <td>Status</td>
         </tr>
       </thead>
-      <tbody v-for="story in stories">
-        <tr>
+      <tbody id="stories-body__test" v-for="story in stories">
+        <tr v-if="checked || story.status==='In Progress'">
           <td><button v-on:click="goToJourney(story.name)" class="story-button">{{ story.name }}</button></td>
           <td>{{story.daysInProgress}}</td>
-          <td>{{story.status}}</td>
+          <td id="status-cell__test"> {{story.status}}</td>
         </tr>
       </tbody>
     </table>

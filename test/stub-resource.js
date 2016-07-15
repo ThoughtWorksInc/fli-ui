@@ -32,7 +32,8 @@ export function fetchGroups () {
 
 export function fetchStories () {
   return new Promise((resolve, reject) => {
-    resolve([{ 'name': 'blah', 'daysInProgress': 7 }])
+    resolve([{ 'name': 'blah', 'status': 'In Progress', 'daysInProgress': 7 },
+  { 'name': 'blah', 'status': 'Completed', 'daysInProgress': 7 }])
   })
 }
 
