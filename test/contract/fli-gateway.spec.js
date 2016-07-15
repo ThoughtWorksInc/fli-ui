@@ -56,7 +56,7 @@ describe('fli gateway', () => {
 
   it('gets all the characateristic values for a characteristic', (done) => {
     FliGateway.fetchCharacteristicValues('size').then(values => {
-      expect(values.sort()).toEqual(['large','medium','small'])
+      expect(values.sort()).toEqual(['large', 'medium', 'small'])
     }).catch(failTest).then(done)
   })
 
