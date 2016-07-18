@@ -29,7 +29,8 @@ import { setActiveStory } from 'src/vuex/actions'
 export default {
   data () {
     return {
-      stories: []
+      stories: [],
+      checked: false
     }
   },
 
