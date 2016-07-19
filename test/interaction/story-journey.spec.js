@@ -80,7 +80,7 @@ describe('story journey', () => {
     harness.run(runner => {
       runner.visit('/story-journey')
       runner.verify($ => {
-        expect($('.characteristic').text()).toContain('size -- small')
+        expect($('.characteristic__test').text()).toContain('size -- small')
       })
     }).then(done)
   })

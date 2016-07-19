@@ -1,16 +1,12 @@
 <template>
   <h2 class="story-journey-title"> Story Journey for: {{ activeStory }}</h2>
   <p class="story-days-in-progress">{{ daysInProgressText }}</p>
-  <div v-if="storyCharacteristics.length > 0">
+  <div>
     <h4>Characteristics</h4>
     <ul v-for="characteristic in storyCharacteristics">
-      <li v-if="characteristic.value !== 'unassigned' " class="characteristic">
+      <li class="characteristic__test">
         {{ characteristic.type }} -- {{ characteristic.value }}
       </li>
-      <li v-else class="characteristic">
-        {{ characteristic.type }} --   
-      </li>
-
     </ul>
   </div>
   <div>
