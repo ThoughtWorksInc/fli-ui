@@ -54,6 +54,17 @@ export function fetchCharacteristicValues (characteristic) {
   }).then(response => response.data.characteristicValues)
 }
 
+export function setSize (storyName, size) {
+  return ajax({
+    url: config['fliAPI'] + 'stories/' + storyName,
+    method: 'POST',
+    data: {
+      'story_name': storyName,
+      'size': size
+    }
+  }).then(response => response.data.size)
+}
+
 function parseDateTime (occurDate, occurTime) {
   var occurredAt = new Date().toISOString()
   if (occurDate !== undefined && occurDate !== '') {

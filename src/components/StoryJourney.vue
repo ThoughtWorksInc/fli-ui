@@ -8,6 +8,10 @@
         {{ characteristic.type }} -- {{ characteristic.value }}
       </li>
     </ul>
+
+    <input id='size-input' class="story-size-input" type="text" v-model="size"/>
+    <button v-on:click="setSize" class="choose-size-button" type="button" role="button">Set Size</button>
+
   </div>
   <div>
     <h4>Events</h4>
@@ -28,6 +32,12 @@ export default {
     daysInProgressText: '',
     storyEvents: [],
     storyCharacteristics: []
+  },
+
+  data () {
+    return {
+      size: ''
+    }
   },
 
   vuex: {
@@ -67,6 +77,20 @@ export default {
           this.toggleText(updatedStory.daysInProgress, updatedStory.status)
           this.storyEvents = updatedStory.events
         })
+      })
+    },
+
+    setSize () {
+      FliGateway.setSize(this.activeStory, this.size).then(response => {
+        if (response.error !== undefined) {
+          this.error = true
+          this.errorMessage = response.error
+          this.sizeSet = false
+        } else {
+          this.size = response.size
+          this.sizeSet = true
+          this.error = false
+        }
       })
     }
 
