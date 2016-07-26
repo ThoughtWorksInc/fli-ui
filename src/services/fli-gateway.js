@@ -62,7 +62,7 @@ export function setSize (storyName, size) {
       'story_name': storyName,
       'size': size
     }
-  }).then(response => response.data.size)
+  }).then(response => response.data)
 }
 
 function parseDateTime (occurDate, occurTime) {
