@@ -1,3 +1,5 @@
+[![Build Status](https://snap-ci.com/ThoughtWorksInc/fli-ui/branch/master/build_image)](https://snap-ci.com/ThoughtWorksInc/fli-ui/branch/master)
+
 # FLI UI
 
 ## Getting Started
