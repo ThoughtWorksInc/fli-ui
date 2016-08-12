@@ -1,5 +1,7 @@
 <template>
-  <h2> Aggregated Cycle Time </h2>
+<div class="cycle-time-graph">
+  <h2> Aggregated Cycle Time</h2>
+  <a v-link="{ path: '/distribution' }">view cycle time distribution</a>
   <div>
     <form>
       <label for="conditions">Conditions</label>
@@ -11,10 +13,10 @@
             <b>with</b> <i>event</i> <b>versus</b> <b>without</b> <i>event</i>
         </span>
       </div>
-      <input id='conditions' 
-             class="conditions-input" 
-             type="text" 
-             v-model="inputConditions" 
+      <input id='conditions'
+             class="conditions-input"
+             type="text"
+             v-model="inputConditions"
              v-on:keyup.enter="updateConditions"
              v-bind:class="{ 'invalid': conditionsInvalid }"
       />
@@ -24,11 +26,12 @@
   <div id="conditions-message" class="error" v-show="conditionsInvalid">
     <div> Uh oh! Your comparison doesn't seem valid.</div>
     <div>
-      Please check if there are any mispellings or non existant activities
+      Please check if there are any misspellings or nonexistent activities
       or modifiers in your condition.
     </div>
   </div>
   <div id="cycleTime"></div>
+</div>
 </template>
 
 <script>
@@ -90,6 +93,9 @@ export default {
 </script>
 
 <style>
+.cycle-time-graph {
+  text-align: center;
+}
   .conditions-input {
     width: 30%;
   }

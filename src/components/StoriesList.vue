@@ -1,11 +1,12 @@
 <template>
-  <h2>Stories</h2>
+<div class="story-list">
+  <h2 class="stories-title">Stories</h2>
   <div>
     <label><input type="checkbox" id="show-all__test" value="all_stories" v-model="checked"> Show all stories</label>
 
     <table style="width:100%">
       <thead>
-        <tr>
+        <tr class="story">
           <td>Story</td>
           <td>Days in Progress</td>
           <td>Status</td>
@@ -20,6 +21,7 @@
       </tbody>
     </table>
   </div>
+</div>
 </template>
 
 <script>
@@ -54,3 +56,15 @@ export default {
   }
 }
 </script>
+
+<style>
+.story-list {
+  border: 1px black solid;
+  min-width: 300px;
+  min-height: 200px;
+}
+
+.stories-title {
+  text-align: center;
+}
+</style>

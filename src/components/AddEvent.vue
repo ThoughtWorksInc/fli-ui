@@ -1,7 +1,7 @@
 <template>
   <div>
     <form>
-      <fieldset>
+      <fieldset class="add-event">
         <label for="event_type">Event Type</label>
         <input id='event_type' class="event-type-input" type="text" v-model="eventType"/>
         <div class="tooltip">(?)
@@ -58,6 +58,12 @@ export default {
 }
 </script>
 <style>
+.add-event {
+  text-align: center;
+  border: 1px solid black;
+  padding: 20px;
+  margin-bottom: 20px;
+}
 .tooltip {
    position: relative;
    display: inline-block;
